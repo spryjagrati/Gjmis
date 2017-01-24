@@ -1,0 +1,149 @@
+// write datewise sql changes here
+
+
+
+16sep2016
+-----------------------------
+CREATE TABLE IF NOT EXISTS `tbl_skureviews` (
+  `idskureview` INT(11) NOT NULL AUTO_INCREMENT,
+  `idsku` INT(11) NOT NULL,
+  `reviews` VARCHAR(256) NOT NULL,
+  `cdate` DATETIME NULL,
+  `mdate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updby` INT(11) NOT NULL DEFAULT '0',
+  	PRIMARY KEY (`idskureview`))
+ENGINE = InnoDB;
+
+
+
+
+26Sep2016
+---------------------------
+CREATE TABLE IF NOT EXISTS `tbl_beadsku` (
+  `idbeadsku` INT(11) NOT NULL AUTO_INCREMENT,
+  `beadskucode` VARCHAR(128) NOT NULL,
+  `dimhei` DECIMAL(5,2) NULL,
+  `dimwid` DECIMAL(5,2) NULL,
+  `dimlen` DECIMAL(5,2) NULL,
+  `grosswt` DECIMAL(9,2) NULL,
+  `magnetwt` DECIMAL(9,2) NULL,
+  `totmetalwei` DECIMAL(7,4) NULL,
+  `totstowei` DECIMAL(7,4) NULL,
+  `numstones` INT(11) NULL,
+  `cdate` DATETIME NULL,
+  `mdate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updby` INT(11) NOT NULL DEFAULT '0',
+  	PRIMARY KEY (`idbeadsku`))
+ENGINE = InnoDB;
+
+
+CREATE TABLE IF NOT EXISTS `tbl_beadmetals` (
+  `idbeadmetals` INT(11) NOT NULL AUTO_INCREMENT,
+  `idbeadsku` INT(11) NOT NULL,
+  `idmetal`INT(11) NOT NULL,
+  `weight` DECIMAL(9,4) NULL,
+  `cdate` DATETIME NULL,
+  `mdate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updby` INT(11) NOT NULL DEFAULT '0',
+  	PRIMARY KEY (`idbeadmetals`))
+ENGINE = InnoDB;
+
+
+CREATE TABLE IF NOT EXISTS `tbl_beadstones` (
+  `idbeadstones` INT(11) NOT NULL AUTO_INCREMENT,
+  `idbeadsku` INT(11) NOT NULL,
+  `idstone`INT(11) NOT NULL,
+  `pieces`INT(6) NOT NULL,
+  `lgsize` DECIMAL(5,2) NULL,
+  `smsize` DECIMAL(5,2) NULL,
+  `remark` VARCHAR(256) NULL,
+  `cdate` DATETIME NULL,
+  `mdate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updby` INT(11) NOT NULL DEFAULT '0',
+  	PRIMARY KEY (`idbeadstones`))
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `tbl_beadfinding` (
+  `idbeadfinding` INT(11) NOT NULL AUTO_INCREMENT,
+  `idbeadsku` INT(11) NOT NULL,
+  `idfinding` INT(11) NOT NULL,
+  `qty` INT(4) NULL,
+  `cdate` DATETIME NULL,
+  `mdate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updby` INT(11) NOT NULL DEFAULT '0',
+  	PRIMARY KEY (`idbeadfinding`))
+ENGINE = InnoDB;
+
+
+CREATE TABLE IF NOT EXISTS `tbl_beadimages` (
+  `idbeadimages` INT(11) NOT NULL AUTO_INCREMENT,
+  `idbeadsku` INT(11) NOT NULL,
+  `image` VARCHAR(128) NOT NULL,
+  `cdate` DATETIME NULL,
+  `mdate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updby` INT(11) NOT NULL DEFAULT '0',
+  	PRIMARY KEY (`idbeadimages`))
+ENGINE = InnoDB;
+
+
+
+27Sep2016
+------------------------------------------
+ALTER TABLE `tbl_beadsku` ADD `type` VARCHAR( 45 ) NOT NULL AFTER `beadskucode` ,
+ADD `sub_category` VARCHAR( 128 ) NOT NULL AFTER `type` ,
+ADD `size` VARCHAR( 45 ) NULL AFTER `sub_category` ;
+
+28Sep2016
+------------------------------------------
+ALTER TABLE `tbl_beadimages` ADD `type` CHAR( 4 ) NOT NULL AFTER `image` ;
+ALTER TABLE `tbl_beadstones` ADD `idsetting` INT( 11 ) NOT NULL AFTER `idstone` ;
+
+
+----------------------------------
+20 Oct 2016
+-----------------------------
+ALTER TABLE `tbl_beadsku` CHANGE `totmetalwei` `totmetalwei` DECIMAL( 7, 4 ) NULL DEFAULT '0.0000';
+ALTER TABLE `tbl_beadsku` CHANGE `totstowei` `totstowei` DECIMAL( 7, 4 ) NULL DEFAULT '0.0000';
+
+
+-------------------------------------
+21 Oct 2016
+---------------------------------
+ALTER TABLE `tbl_stone` ADD `jewelry_type` INT( 5 ) NOT NULL DEFAULT '1' AFTER `month` ;
+
+
+
+-------------------------
+26 OCT 2016
+--------------------------
+ALTER TABLE `tbl_stone` CHANGE `idstonesize` `idstonesize` INT( 11 ) NULL ;
+
+
+
+04 Nov 2016
+------------------------------
+ALTER TABLE `tbl_stone` CHANGE `color` `color` VARCHAR( 20 ) CHARACTER SET utf8 COLLATE utf8_general_ci NULL ;
+ALTER TABLE `tbl_stone` CHANGE `weight` `weight` DECIMAL( 7, 5 ) NULL ;
+ALTER TABLE `tbl_stone` CHANGE `idshape` `idshape` INT( 11 ) NULL ;
+ALTER TABLE `tbl_stone` CHANGE `idstonesize` `idstonesize` INT( 11 ) NOT NULL ;
+
+
+
+10 Nov 2016
+-------------------------------
+CREATE TABLE IF NOT EXISTS `tbl_beadreviews` (
+  `idbeadreview` INT(11) NOT NULL AUTO_INCREMENT,
+  `idbeadsku` INT(11) NOT NULL,
+  `reviews` VARCHAR(256) NOT NULL,
+  `cdate` DATETIME NULL,
+  `mdate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updby` INT(11) NOT NULL DEFAULT '0',
+    PRIMARY KEY (`idbeadreview`))
+ENGINE = InnoDB;
+
+ALTER TABLE `tbl_beadstones` ADD `gem_wt` DECIMAL( 7, 5 ) NULL DEFAULT NULL AFTER `smsize` ;
+
+
+24 Nov 2016
+-----------------------------------------
+ALTER TABLE `tbl_sku` ADD `tot_cost` DECIMAL( 8, 4 ) NOT NULL ;
