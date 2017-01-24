@@ -1,0 +1,10 @@
+<?php
+include('wvFormDefaultValueValidator.php');
+include('wvFormEmailValidator.php');
+include('wvFormNoWhitespaceValidator.php');
+include('wvFormNumberValidator.php');
+include('wvFormRequiredValidator.php');
+include('wvFormStringValidator.php');
+include('wvFormUrlValidator.php');
+include('wvFormManualValidator.php');
+?>

@@ -1,0 +1,17 @@
+Version 0.7 (2010-06-02)
+==========================
+- Layout class support
+- wvActiveFormLayoutDefault deprecated, use the 'layoutName'=>'default' form parameter.
+- Added "qtip" layout, that uses jQuery.qtip to display messages.
+- BUGFIX: changed 1 line in jQuery.validate to make it compatible with Yii's checkbox
+and radiobutton use of hidden fields. Because of this, the minified version of
+jQuery.validation is disabled.
+
+Version 0.61 (2010-05-30)
+==========================
+- BUGFIX: PHP < 5.3 doesn't have lcfirst()
+
+Version 0.6 (2010-05-28)
+========================
+- Initial google code import
+

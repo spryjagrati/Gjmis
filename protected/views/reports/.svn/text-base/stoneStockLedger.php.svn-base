@@ -1,0 +1,74 @@
+<style>
+    .item-class .odd{
+        background-color: #d3e8eb;
+    }
+    .listtab{
+        width:500px;
+    }
+</style>
+<?php
+$this->breadcrumbs=array(
+	'Reports'=>array('stoneStockLedger'),
+	'Stone Stock Ledger',
+);
+?>
+<div class="pageTitle">
+<h3>Stone Stock Ledger</h3>
+<?php
+$tabs=array();
+$tabs['Select Stone']=$this->renderPartial("_form", array("type" => $type,"idshape"=>$idshape,"idstonesize"=>$idstonesize,"idstonem"=>$idstonem), true);
+?>
+
+        <?php
+$this->widget('zii.widgets.jui.CJuiTabs', array(
+    'tabs'=>$tabs,
+    'options'=>array(
+        'collapsible'=>true,
+    ),
+));
+?>
+<div class="listtab">
+
+<?php $this->widget('zii.widgets.grid.CGridView', array(
+	'id'=>'stonestockledger-grid',
+	'dataProvider'=>$dataProvider,
+        'columns'=>array(
+//            array( 'name' => '',
+//                   'type' => 'raw',
+//                   'value' => 'CHtml::link("View",array("reports/stoneStockDetail","id"=>$data["id"]))',
+//                ),
+		 array( 'header' => 'Departments',
+                   'type' => 'raw',
+                   'value' => '$data["department"]',
+               ),
+            array( 'header' => 'Recived Wt',
+                   'type' => 'raw',
+                   'value' => '$data["rweight"]',
+               ),
+            
+              array( 'header' => 'Received Qty',
+                   'type' => 'raw',
+                   'value' => '$data["rqty"]',
+              ),
+             array( 'header' => 'Receiced Date',
+                   'type' => 'raw',
+                   'value' => '$data["receivedate"]',
+                ),
+            
+              array( 'header' => 'Issued Wt',
+                   'type' => 'raw',
+                   'value' => '$data["iweight"]',
+                ),
+             array( 'header' => 'Issued Qty',
+                   'type' => 'raw',
+                   'value' => '$data["iqty"]',
+                ),
+            array( 'header' => 'Issued Date',
+                   'type' => 'raw',
+                   'value' => '$data["issuedate"]',
+                ),
+        
+           
+))); ?>
+
+</div>

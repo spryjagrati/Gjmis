@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/johareez/!svn/ver/2/gmis/protected/views/locations
+END
+_search.php
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/johareez/!svn/ver/2/gmis/protected/views/locations/_search.php
+END
+update.php
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/johareez/!svn/ver/2/gmis/protected/views/locations/update.php
+END
+create.php
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/johareez/!svn/ver/2/gmis/protected/views/locations/create.php
+END
+createstonestock.php
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/johareez/!svn/ver/2/gmis/protected/views/locations/createstonestock.php
+END
+admin.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/johareez/!svn/ver/2/gmis/protected/views/locations/admin.php
+END
+index.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/johareez/!svn/ver/2/gmis/protected/views/locations/index.php
+END
+_form.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/johareez/!svn/ver/2/gmis/protected/views/locations/_form.php
+END
+_stonestockform.php
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/johareez/!svn/ver/2/gmis/protected/views/locations/_stonestockform.php
+END
+_view.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/johareez/!svn/ver/2/gmis/protected/views/locations/_view.php
+END
+view.php
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/johareez/!svn/ver/2/gmis/protected/views/locations/view.php
+END

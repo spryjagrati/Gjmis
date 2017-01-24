@@ -1,0 +1,41 @@
+<?php
+$this->breadcrumbs=array(
+	'Reports'=>array('skuReport'),
+	'Dept Sku Report',
+);
+?>
+<h1>Sku Report</h1>
+<?php
+$tabs=array();
+$tabs['Select Department']=$this->renderPartial("_form", array("model"=>$model,"type"=>$type), true);
+
+$this->widget('zii.widgets.jui.CJuiTabs', array(
+    'tabs'=>$tabs,
+    'options'=>array(
+        'collapsible'=>true,
+    ),
+));
+?>
+<?php if(isset($model->iddept)&&$model->iddept!==''){ ?>
+<?php 
+  
+?>
+<?php $this->widget('zii.widgets.grid.CGridView', array(
+	'id'=>'skureport-grid',
+	'dataProvider'=>$data,
+    //'summaryText'=>'',
+    //material request columns
+	'columns'=>array(
+            array('name'=>'idsku','header'=>'Sku #', 'value'=>'$data["skucode"]'),
+            array('name'=>'idpo','header'=>'PO'),
+            array('name'=>'qty','header'=>'Qty','value'=>'$data["qty"]'),
+            array('header'=>'Total Weight','value'=>'number_format(($data["grosswt"] *$data["qty"]), 2, ".", "")'),
+            array('header'=>'Total Stone','value'=>'number_format(($data["totstowei"] *$data["qty"]), 2, ".", "")'),
+            array('header'=>'Total Metal','value'=>'number_format(($data["totmetalwei"] * $data["qty"]), 2, ".", "")'),
+            array('name'=> 'mdate','header'=>'Date'),
+            array('name'=> 'refrcvd','header'=>'Ref. Received by'),
+            array('name'=> 'refsent','header'=>'Ref. Sent to'),
+	),
+)); ?>
+<?php
+}?>

@@ -1,0 +1,17 @@
+<?php
+$this->breadcrumbs=array(
+	'Deptstonelogs'=>array('index'),
+	$model->iddeptstonelog=>array('view','id'=>$model->iddeptstonelog),
+	'StocksUpdate',
+);
+
+$this->menu=array(
+	//array('label'=>'List Deptstonelog', 'url'=>array('index')),
+	array('label'=>'Create Deptstonestocks', 'url'=>array('stockscreate')),
+	array('label'=>'Manage Deptstonestocks', 'url'=>array('admin')),
+);
+?>
+
+<h1>Update Dept Stone Stocks <?php echo $model->iddeptstonelog; ?></h1>
+
+<?php echo $this->renderPartial('_stocksformupdate', array('model'=>$model)); ?>

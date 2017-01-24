@@ -1,0 +1,45 @@
+<?php
+$this->breadcrumbs=array(
+	'Reports'=>array('stoneReport'),
+	'Dept Stone Report',
+);
+?>
+<h1>Stone Report</h1>
+<?php
+$tabs=array();
+$tabs['Select Department']=$this->renderPartial("_form", array("model"=>$model,"type"=>$type), true);
+
+$this->widget('zii.widgets.jui.CJuiTabs', array(
+    'tabs'=>$tabs,
+    'options'=>array(
+        'collapsible'=>true,
+    ),
+));
+?>
+<?php if(isset($model->iddept)&&$model->iddept!==''){ ?>
+<?php $metsql='select dsl.idstone, sm.name stone, sh.name shape, s.quality, ss.size, s.weight, dsl.qty, mr.rqty rqty from
+(select idstone, iddept, sum(qty) qty from tbl_deptstonelog group by idstone, iddept) dsl
+left join (select idstone ids, reqby, sum(rqty) rqty from tbl_matreq where idstatusm='.ComSpry::getDefReqStatusm().' group by ids) mr on mr.reqby=dsl.iddept and mr.ids=dsl.idstone,
+tbl_stone s, tbl_stonem sm, tbl_shape sh, tbl_stonesize ss
+where dsl.idstone=s.idstone and s.idshape=sh.idshape and s.idstonem=sm.idstonem and s.idstonesize=ss.idstonesize and dsl.iddept='.$model->iddept.' group by dsl.idstone';
+?>
+<?php $this->widget('zii.widgets.grid.CGridView', array(
+	'id'=>'stonereport-grid',
+	'dataProvider'=>new CSqlDataProvider($metsql, array(
+            'keyField'=>'idstone',
+        )),
+    //'summaryText'=>'',
+    //material request columns
+	'columns'=>array(
+            'idstone',
+            'stone',
+            'shape',
+            'quality',
+            'size',
+            'weight',
+            'qty',
+            array('name'=>'rqty','header'=>'Requested Qty'),
+	),
+)); ?>
+<?php
+}?>

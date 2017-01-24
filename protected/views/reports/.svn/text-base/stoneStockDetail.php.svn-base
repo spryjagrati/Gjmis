@@ -1,0 +1,88 @@
+<?php
+$this->breadcrumbs=array(
+	'Reports'=>array('stoneStockDetail'),
+	'Stone Stock Detail',
+);
+?>
+<div class="pageTitle">
+<h3>Stone Stock Details</h3>
+<?php
+$tabs=array();
+$tabs['Select Department']=$this->renderPartial("_form", array("model"=>$model,"type"=>$type), true);
+
+?>
+
+        <?php
+$this->widget('zii.widgets.jui.CJuiTabs', array(
+    'tabs'=>$tabs,
+    'options'=>array(
+        'collapsible'=>true,
+    ),
+));
+?>
+
+<div class="listtab">
+
+<?php $this->widget('zii.widgets.grid.CGridView', array(
+	'id'=>'loginreport-grid',
+	'dataProvider'=>$dataProvider,
+        'columns'=>array(
+//            array( 'name' => '',
+//                   'type' => 'raw',
+//                   'value' => 'CHtml::link("Stone Ledger",array("reports/stoneStockLedger","id"=>$data["id"]))',
+//                ),
+//		
+                     
+              array( 'header' => 'Stone Name',
+                   'type' => 'raw',
+                   'value' => '$data["stonename"]',
+              ),
+            /* Manish Changes on Oct-11 add shape and size field ----start--- */
+            array( 'header' => 'Shape',
+                   'type' => 'raw',
+                   'value' => '$data["shape"]',
+                ),
+              array( 'header' => 'Size',
+                   'type' => 'raw',
+                   'value' => '$data["size"]',
+                ),
+             /* Manish Changes add shape and size field ----end--- */
+            array( 'header' => 'Total Receipt PCs',
+                   'type' => 'raw',
+                   'value' => '$data["receiptquantity"]',
+                ),
+              array( 'header' => 'Total Receipt weight',
+                   'type' => 'raw',
+                   'value' => '$data["rweight"]',
+                ),
+            array( 'header' => 'Total Issued PCs',
+                   'type' => 'raw',
+                   'value' => '$data["issuequantity"]',
+                ),
+              array( 'header' => 'Total Issued weight',
+                   'type' => 'raw',
+                   'value' => '$data["iweight"]',
+                ),
+//             array( 'header' => 'Total Issued PCs',
+//                   'type' => 'raw',
+//                   'value' => '$data["negquantity"]',
+//                ),
+            array( 'header' => 'Grade',
+                   'type' => 'raw',
+                   'value' => '$data["grade"]',
+                ),
+            array( 'header' => 'Balance Weight',
+                   'type' => 'raw',
+                   'value' => '$data["balweight"]',
+                ),
+             array( 'header' => 'Balance Quantity',
+                   'type' => 'raw',
+                   'value' => '$data["balqty"]',
+                ),
+          
+        
+           
+))); ?>
+
+</div>
+</div>

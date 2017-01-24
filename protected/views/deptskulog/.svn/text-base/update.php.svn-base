@@ -1,0 +1,16 @@
+<?php
+$this->breadcrumbs=array(
+	'Deptskulogs'=>array('index'),
+	$model->iddeptskulog=>array('view','id'=>$model->iddeptskulog),
+	'Update',
+);
+
+$this->menu=array(
+	array('label'=>'Create Deptskulog', 'url'=>array('create')),
+	array('label'=>'Manage Deptskulog', 'url'=>array('admin')),
+);
+?>
+
+<h1>Update Deptskulog <?php echo $model->iddeptskulog; ?></h1>
+
+<?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

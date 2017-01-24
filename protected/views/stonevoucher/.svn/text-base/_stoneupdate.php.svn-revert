@@ -1,0 +1,106 @@
+<style>
+    .uniForm .inlineLabels label, .uniForm .inlineLabels .label{
+        width:7.2%;
+    }
+    
+    #add_field a{
+        float:right;
+    }
+</style>
+
+
+<div class="uniForm">
+<?php $form=$this->beginWidget('ext.wvactiveform.wvActiveForm', array(
+	'id'=>'deptstonelog-form',
+	'enableAjaxValidation'=>false,'layoutName'=>'qtip'
+)); ?>
+<fieldset class="inlineLabels">
+
+    <p class="note"  style="width:22% !important ">Fields with <span class="required">*</span> are required.</p>
+    
+    <?php
+        $i = 0;
+        $stones = ComSpry::getStones();
+        foreach($models as $model){ ?>
+    <?php 
+        $data = array();
+        foreach($stones as $key=>$value){
+           if($model->idstone == $key){
+               $data =  $data.'<option value="'.$key.'" selected="selected">'.$value.'</option>';
+           }else{
+               $data =  $data.'<option value="'.$key.'">'.$value.'</option>';
+           }
+       }
+//       /  print_r($model->attributes);die();
+    ?>
+    <div class="ctrlHolder">
+                                                <input type="hidden" value="<?php print_r($model->iddeptstonelog); ?>" name="Deptstonelog[<?php print_r($i); ?>][iddeptstonelog]" id="Deptstonelog_iddeptstonelog">
+                                                <label for="Deptstonelog_idstone" class="required">Stone <span class="required">*</span></label> 
+                                                <input empty="" class="textInput" style="width:3%" name="Deptstonelog[<?php print_r($i); ?>][idstone]" id="Deptstonelog_qty" type="hidden" value="<?php print_r($model->idstone); ?>" >	
+                                                <select class="selectInput" style="width:15%" name="Deptstonelog[<?php print_r($i); ?>][idstone]" id="Deptstonelog_idstone" disabled="disabled" >
+                                                <option value="" ></option>
+                                                <?php print_r($data); ?>
+                                                </select>		
+                                                <label for="Deptstonelog_qty" class="required">Quantity <span class="required">*</span></label>           
+                                                <input empty="" class="textInput" style="width:3%" name="Deptstonelog[<?php print_r($i); ?>][qty]" id="Deptstonelog_qty" type="text" value="<?php print_r($model->qty); ?>" >	
+                                                <label for="Deptstonelog_idpo">IdPO</label>                
+                                                <input empty="" class="textInput" style="width:3%" name="Deptstonelog[<?php print_r($i); ?>][idpo]" id="Deptstonelog_idpo" type="text" value="<?php print_r($model->idpo); ?>" disabled="disabled" >                
+                                                <input empty="" class="textInput" style="width:3%" name="Deptstonelog[<?php print_r($i); ?>][idpo]" id="Deptstonelog_idpo" type="hidden" value="<?php print_r($model->idpo); ?>"  >                
+                                                <label for="Deptstonelog_stonewt">Stone Wt. per piece</label>               
+                                                <input empty="" class="textInput" style="width:7%" name="Deptstonelog[<?php print_r($i); ?>][stonewt]" id="Deptstonelog_stonewt" type="text" value="<?php print_r($model->stonewt); ?>" >                
+                                                <label for="Deptstonelog_remark">Remark</label>               
+                                                <input empty="" class="textInput" style="width:10%" name="Deptstonelog[<?php print_r($i); ?>][remark]" id="Deptstonelog_remark" type="text" value="<?php print_r($model->remark); ?>" >  
+                                                <input style="width:3%" name="Deptstonelog[<?php print_r($i); ?>][acknow]" id="Deptstonelog_acknow"    <?php if($model->acknow ==1){?> checked="checked" <?php } ?>type="checkbox">
+                                                <div style="clear:both;"></div>
+                                                <label for="Deptstonelog_skuname">Sku Name</label>               
+                                                <input empty="" class="textInput" style="width:10%" name="Deptstonelog[<?php print_r($i); ?>][skuname]" id="Deptstonelog_skuname" type="text" value="<?php print_r($model->skuname); ?>" >  
+                                                
+                                                <label for="Deptstonelog_set">Set</label>               
+                                                <input empty="" class="textInput" style="width:10%" name="Deptstonelog[<?php print_r($i); ?>][set]" id="Deptstonelog_set" type="text" value="<?php print_r($model->set); ?>" >  
+                                                
+    </div>
+    <?php $i++;} ?>
+    
+   <div id="container"></div>
+    
+    <p id="add_field"><a href="#"><span>Add More Stones</span></a></p>
+    
+    <div class="buttonHolder">
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save',array('class'=>'primaryAction', 'style'=>'width:20%')); ?>
+                
+    </div>
+
+<?php $this->endWidget(); ?>  
+</fieldset>
+</div><!-- form -->
+
+<script>
+    var count = <?php echo($i); ?>;
+    $(function(){
+            $('p#add_field').click(function(){
+                    count += 1;
+                    $('#container').append('<div class="ctrlHolder"><label for="Deptstonelog_idstone" class="required">Stone <span class="required">*</span></label> '
+                                                + '<select class="selectInput" style="width:15%" name="Deptstonelog[' + count + '][idstone]" id="Deptstonelog_idstone">'
+                                                + '<option value=""></option>'
+                                                + '<?php print_r($data); ?>'
+                                                + '</select>'
+                                                + '<label for="Deptstonelog_qty" class="required">Quantity <span class="required">*</span></label>'             
+                                                + '<input empty="" class="textInput" style="width:3%" name="Deptstonelog[' + count + '][qty]" id="Deptstonelog_qty" type="text">'	
+                                                + '<label for="Deptstonelog_idpo">IdPO</label> '               
+                                                + '<input empty="" class="textInput" style="width:3%" name="Deptstonelog[' + count + '][idpo]" id="Deptstonelog_idpo" type="text">'                
+                                                + '<label for="Deptstonelog_stonewt">Stone Wt. per piece</label> '               
+                                                + '<input empty="" class="textInput" style="width:7%" name="Deptstonelog[' + count + '][stonewt]" id="Deptstonelog_stonewt" type="text" value="0.0000">'                
+                                                + '<label for="Deptstonelog_remark">Remark</label>  '             
+                                                + '<input empty="" class="textInput" style="width:10%" name="Deptstonelog[' + count + '][remark]" id="Deptstonelog_remark" type="text"> '
+                                                + '<input  style="width:3%" name="Deptstonelog[' + count + '][acknow]" id="Deptstonelog_acknow" type="checkbox"> '
+                                                + '<div style="clear:both;"></div>'
+                                                +'<label for="Deptstonelog_skuname">Sku Name</label>  '             
+                                                + '<input empty="" class="textInput" style="width:10%" name="Deptstonelog[' + count + '][skuname]" id="Deptstonelog_skuname" type="text"> '
+                                                + '<label for="Deptstonelog_set">Set</label>  '             
+                                                + '<input empty="" class="textInput" style="width:10%" name="Deptstonelog[' + count + '][set]" id="Deptstonelog_set" type="text"> '
+                                                + '<div>');
+                                                });
+                                        });
+    
+    
+</script>

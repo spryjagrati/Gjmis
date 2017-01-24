@@ -1,0 +1,71 @@
+<?php
+$this->breadcrumbs=array(
+	'Reports'=>array('stoneStockReport'),
+	'Stone Stock Report',
+);
+?>
+<h1>Stone Stock Report</h1>
+<?php
+$tabs=array();
+$tabs['Select Department']=$this->renderPartial("_form", array("model"=>$model,"type"=>$type), true);
+?>
+
+        <?php
+$this->widget('zii.widgets.jui.CJuiTabs', array(
+    'tabs'=>$tabs,
+    'options'=>array(
+        'collapsible'=>true,
+    ),
+));
+?>
+<?php if(isset($model->iddept)&&$model->iddept!==''){ ?>
+<?php
+
+$this->widget('zii.widgets.grid.CGridView', array(
+	'id'=>'stonereport-grid',
+	'dataProvider'=>$dataProvider,
+        //'filter'=>$model,
+    
+    'columns'=>array(
+//        array('name' => '',
+//            'type' => 'raw',
+//            'value' => 'CHtml::link("Summary",array("reports/stoneSummary","id"=>"$data[stoneid]"))',
+//            'htmlOptions' => array('style' => 'width:8%;')),
+            //'summaryText'=>'',
+            array( 'header' => 'S. No',
+                   'type' => 'raw',
+                   'value' => '++$row',
+               ),
+            array( 'header' => 'Id Stone',
+                   'type' => 'raw',
+                   'value' => '$data["stoneid"]',
+               ),
+            array( 'header' => 'Stone',
+                   'type' => 'raw',
+                   'value' => '$data["sname"]',
+               ),
+        /* Manish Changes on Oct-11 add shape and size field ----start--- */
+               array( 'header' => 'Shape',
+                   'type' => 'raw',
+                   'value' => '$data["shape"]',
+               ),
+           array( 'header' => 'Size',
+                   'type' => 'raw',
+                   'value' => '$data["size"]',
+               ),
+        /* Manish Changes add shape and size field ----end--- */
+         array( 'header' => 'Weight',
+                   'type' => 'raw',
+                   'value' => '$data["weight"]',
+               ),
+            
+           array( 'header' => 'Quantity',
+                   'type' => 'raw',
+                   'value' => '$data["quantity"]',
+               ),
+            
+            
+	),
+));?>
+<?php
+}?>
